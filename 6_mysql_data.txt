@@ -1,6 +1,5 @@
 #--------------------------------------------------------------------------------------------------------------
 #login to mysql shell as root
-sudo mysql -u root -pMySq001920
 #create new user
 CREATE USER 'admin'@'%' IDENTIFIED WITH mysql_native_password BY 'aDmin_1294';
 GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%';
@@ -13,10 +12,3 @@ ALTER DATABASE bugtracker CHARACTER SET utf8 COLLATE utf8_general_ci;
 exit
 
 #----------------------------------
-mysql -u admin -paDmin_1294
-use bugtracker;
-show tables;
-exit
-
-#----------------------------------
-#--------------------------------------------------------------------------------------------------------------
