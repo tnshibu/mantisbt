@@ -1,0 +1,24 @@
+#--------------------------------------------------------------------------------------------------------------
+#install apache server
+sudo apt update
+sudo apt install apache2 -y
+sudo ufw app list
+sudo ufw allow 'Apache Full'
+
+cd /etc/apache2/sites-available
+sudo sed -i -e '/DocumentRoot/s/\/var\/www\/html/\/home\/azureuser\/mantisbt/'  000-default.conf
+
+#explanation below
+#Replace /var/www/html  with /home/azureuser/mantisbt   if a line contains DocumentRoot
+
+
+#append a block to /etc/apache2/apache2.conf
+sudo bash -c 'echo "<Directory /home/azureuser/mantisbt >  " >> /etc/apache2/apache2.conf'
+sudo bash -c 'echo "        Options Indexes FollowSymLinks " >> /etc/apache2/apache2.conf'
+sudo bash -c 'echo "        AllowOverride None             " >> /etc/apache2/apache2.conf'
+sudo bash -c 'echo "        Require all granted            " >> /etc/apache2/apache2.conf'
+sudo bash -c 'echo "</Directory>                           " >> /etc/apache2/apache2.conf'
+
+sudo service apache2 restart
+
+#--------------------------------------------------------------------------------------------------------------

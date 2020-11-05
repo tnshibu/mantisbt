@@ -1,0 +1,14 @@
+#--------------------------------------------------------------------------------------------------------------
+
+http://40.68.0.121/admin/install.php
+
+vi mantisbt-2.24.2/config/config_inc.php
+
+Send queued emails
+./mantisbt-2.24.2/scripts/send_emails.php
+
+vi ./mantisbt-2.24.2/core/email_api.php
+
+tail -f /var/log/apache2/error.log
+
+#--------------------------------------------------------------------------------------------------------------

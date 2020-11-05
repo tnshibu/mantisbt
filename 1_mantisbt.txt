@@ -1,0 +1,19 @@
+#--------------------------------------------------------------------------------------------------------------
+#install mantisBT
+
+cd ~
+sudo apt update
+sudo apt install unzip sendmail -y
+wget https://excellmedia.dl.sourceforge.net/project/mantisbt/mantis-stable/2.24.2/mantisbt-2.24.2.zip
+unzip mantisbt-2.24.2.zip
+mv mantisbt-2.24.2 mantisbt
+echo "<?php phpinfo(); ?>"  > mantisbt/info.php
+cp email_api.php ~/mantisbt/core/
+chmod -R 755 mantisbt
+
+#git clone https://github.com/tnshibu/mantisbt
+#cd ~/mantisbt-2.24.2/config
+#cp config_inc.php.sample config_inc.php
+#modify config_inc.php to have values for username, password, etc...
+
+#--------------------------------------------------------------------------------------------------------------
