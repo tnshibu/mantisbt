@@ -2125,12 +2125,20 @@ function email_get_actions() {
 }
 
 function invokeCurlEmail($t_recipient, $t_subject , $t_message) {
-    $handle = curl_init();
+    print "2";
 
-    #$url = "https://prod-19.centralus.logic.azure.com/workflows/928251ea8f1046a89760e1bed344ca9f/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=rlA9MOON8Pih2jHKKkT83hftBhZm9hJSLQXMNYgCSSc";
     $url = "https://bugtrack.azurewebsites.net/api/EmailSender";
     $url = "http://localhost:7071/api/EmailSender";
     $url = "https://bugtrackerfunctionapp.azurewebsites.net/api/EmailSender";
+    $url = "https://prod-19.centralus.logic.azure.com/workflows/928251ea8f1046a89760e1bed344ca9f/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=rlA9MOON8Pih2jHKKkT83hftBhZm9hJSLQXMNYgCSSc";
+    $url = "https://prod-13.centralus.logic.azure.com/workflows/ef8739efb1c944e3abbd281a41b31dea/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=58tIPx8xih4EzLtvjhNOPBqa4_uKLetovArpheULDCg";
+
+    $url = "https://prod-13.centralus.logic.azure.com/workflows/ef8739efb1c944e3abbd281a41b31dea/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=58tIPx8xih4EzLtvjhNOPBqa4_uKLetovArpheULDCg";
+    
+//curl -F "msgbody=body2" -F "recepients=shibu.narayanan@oracle.com,arunima.saha@oracle.com" -F "subject=subject1" -X POST "https://prod-13.centralus.logic.azure.com/workflows/ef8739efb1c944e3abbd281a41b31dea/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=58tIPx8xih4EzLtvjhNOPBqa4_uKLetovArpheULDCg"
+
+
+    $handle = curl_init($url);
 
     $postData = array(
       'msgbody' => $t_message,
@@ -2140,17 +2148,19 @@ function invokeCurlEmail($t_recipient, $t_subject , $t_message) {
 
     curl_setopt_array($handle,
       array(
-        CURLOPT_URL => $url,
-        // Enable the post response.
-        CURLOPT_POST       => true,
-        // The data to transfer with the response.
-        CURLOPT_POSTFIELDS => $postData,
+        //CURLOPT_URL                => $url,
+        CURLOPT_POST               => true,
         CURLOPT_RETURNTRANSFER     => true,
+        CURLOPT_SSL_VERIFYHOST     => false,
+        CURLOPT_SSL_VERIFYPEER     => false,
+        // The data to transfer with the response.
+        CURLOPT_POSTFIELDS => $postData
       )
     );
-
     $data = curl_exec($handle);
     curl_close($handle);
+    print "x".$data;
+    print "3";
 }
 
 ?>
