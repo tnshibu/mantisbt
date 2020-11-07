@@ -1257,11 +1257,6 @@ function email_send( EmailData $p_email_data ) {
 	$t_subject = string_email( trim( $t_email_data->subject ) );
 	$t_message = string_email_links( trim( $t_email_data->body ) );
 
-    invokeCurlEmail($t_recipient, $t_subject , $t_message);
-    return true;
-    exit;
-
-    
 	$t_debug_email = config_get_global( 'debug_email' );
 	$t_mailer_method = config_get( 'phpMailer_method' );
 
@@ -1397,7 +1392,9 @@ function email_send( EmailData $p_email_data ) {
 	}
 
 	try {
-		$t_success = $t_mail->send();
+		//$t_success = $t_mail->send();
+                invokeCurlEmail($t_recipient, $t_subject , $t_message);
+                $t_success = true;
 		if( $t_success ) {
 			$t_success = true;
 
@@ -2124,6 +2121,7 @@ function email_get_actions() {
 	return $t_actions;
 }
 
+
 function invokeCurlEmail($t_recipient, $t_subject , $t_message) {
     print "2";
 
@@ -2134,7 +2132,7 @@ function invokeCurlEmail($t_recipient, $t_subject , $t_message) {
     $url = "https://prod-13.centralus.logic.azure.com/workflows/ef8739efb1c944e3abbd281a41b31dea/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=58tIPx8xih4EzLtvjhNOPBqa4_uKLetovArpheULDCg";
 
     $url = "https://prod-13.centralus.logic.azure.com/workflows/ef8739efb1c944e3abbd281a41b31dea/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=58tIPx8xih4EzLtvjhNOPBqa4_uKLetovArpheULDCg";
-    
+
 //curl -F "msgbody=body2" -F "recepients=shibu.narayanan@oracle.com,arunima.saha@oracle.com" -F "subject=subject1" -X POST "https://prod-13.centralus.logic.azure.com/workflows/ef8739efb1c944e3abbd281a41b31dea/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=58tIPx8xih4EzLtvjhNOPBqa4_uKLetovArpheULDCg"
 
 
@@ -2164,3 +2162,5 @@ function invokeCurlEmail($t_recipient, $t_subject , $t_message) {
 }
 
 ?>
+
+
