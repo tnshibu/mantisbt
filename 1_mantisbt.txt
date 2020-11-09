@@ -9,6 +9,7 @@ unzip mantisbt-2.24.2.zip
 mv mantisbt-2.24.2 mantisbt
 echo "<?php phpinfo(); ?>"  > mantisbt/info.php
 cp email_api.php ~/mantisbt/core/
+cp config_defaults_inc.php ~/mantisbt/
 chmod -R 755 mantisbt
 chmod 777 mantisbt/config
 
