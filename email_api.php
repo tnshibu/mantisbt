@@ -2123,7 +2123,6 @@ function email_get_actions() {
 
 
 function invokeCurlEmail($t_recipient, $t_subject , $t_message) {
-    print "2";
 
     $url = "https://bugtrack.azurewebsites.net/api/EmailSender";
     $url = "http://localhost:7071/api/EmailSender";
@@ -2157,8 +2156,6 @@ function invokeCurlEmail($t_recipient, $t_subject , $t_message) {
     );
     $data = curl_exec($handle);
     curl_close($handle);
-    print "x".$data;
-    print "3";
 }
 
 ?>
